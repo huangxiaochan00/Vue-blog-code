@@ -1,5 +1,8 @@
 <template>
-  <div class="home">首页</div>
+  <div class="home">
+    首页
+    <el-button>ddd</el-button>
+  </div>
 </template>
 
 <script>
