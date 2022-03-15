@@ -1,11 +1,11 @@
 import request from "../helper/request";
 
 const URL = {
-    GET_LIST: '',
-    GET_DETAIL: '',
-    UPDATE: '',
-    DELETE: '',
-    CREATE: ''
+    GET_LIST: '/blog',
+    GET_DETAIL: '/blog/:blogId',
+    UPDATE: '/blog',
+    DELETE: '/blog/:blogId',
+    CREATE: '/blog/:blogId'
 }
 export default {
     getBlogs({ page = 1, userId, atIndex } = { page: 1 }) {
