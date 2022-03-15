@@ -1,12 +1,24 @@
 <template>
-  <header>
-    <h1>Let's share</h1>
-    <div class="btns">
-      <el-button>立即登陆</el-button>
-    </div>
+  <header :class="{ login: isLogin, 'no-login': !isLogin }">
+    <template v-if="!isLogin">
+      <h1>Let's share</h1>
+      <p>精品博客汇聚</p>
+      <div class="btns">
+        <el-button>立即登录</el-button>
+        <el-button>注册账号</el-button>
+      </div>
+    </template>
+    <template v-if="isLogin">
+      <h1>Let's share</h1>
+      <i class="edit el-icon-edit"></i>
+      <img
+        class="avatar"
+        src="http://cn.gravatar.com/avatar/1?s=128&d=identicon"
+        alt=""
+      />
+    </template>
   </header>
 </template>
-
 <script>
 // import { Button } from "element-ui";
 export default {
@@ -24,8 +36,11 @@ export default {
 header.no-login {
   padding: 0 12% 30px 12%;
   background: @bgColor;
-  display: grid;
-  justify-items: center;
+  display: flex;
+  flex-direction: column;4
+  justify-content: center;
+  text-align: center;
+    // justify-items: ;
 
   h1 {
     color: #fff;
@@ -41,6 +56,10 @@ header.no-login {
 
   .btns {
     margin-top: 20px;
+    .el-button {
+      color: white;
+      //   border: white;
+    }
   }
 
   button {

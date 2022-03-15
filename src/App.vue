@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Header id="header" />
-    <main>
+    <main id="main">
       <router-view />
     </main>
     <Footer id="footer" />
@@ -20,13 +20,36 @@ export default {
 };
 </script>
 
-<style lang='less'>
+<style lang="less">
+@import "./assets/common.less";
+
 #app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+  #header {
+    padding-left: 12%;
+    padding-right: 12%;
+  }
+
+  #main {
+    flex-grow: 1;
+  }
+  #footer {
+    padding-left: 12%;
+    padding-right: 12%;
+  }
+}
+
+@media (max-width: 768px) {
+  #app {
+    grid-template-columns: 10px auto 10px;
+
+    #header,
+    #footer {
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+  }
 }
 </style>
+
