@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     首页
-    <el-button>ddd</el-button>
+    <el-button>点击按钮</el-button>
   </div>
 </template>
 
