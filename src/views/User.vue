@@ -1,5 +1,5 @@
 <template>
-  <div id="personal">
+  <div id="user">
     <section class="user-info">
       <img
         src="http://cn.gravatar.com/avatar/1?s=128&d=identicon"
@@ -22,10 +22,6 @@
           模块、ES2017中的async/await。适合初步接触 Node.js以及少量
           ES6语法的同学阅读...
         </p>
-        <div class="actions">
-          <router-link to="/edit">编辑</router-link>
-          <a href="#">删除</a>
-        </div>
       </div>
 
       <div class="item">
@@ -41,14 +37,11 @@
           模块、ES2017中的async/await。适合初步接触 Node.js以及少量
           ES6语法的同学阅读...
         </p>
-        <div class="actions">
-          <router-link to="/edit">编辑</router-link>
-          <a href="#">删除</a>
-        </div>
       </div>
     </section>
   </div>
 </template>
+
 <script>
 export default {
   data() {
@@ -61,8 +54,7 @@ export default {
 
 <style scoped lang='less'>
 @import "../assets/base.less";
-#my,
-#personal {
+#user {
   .user-info {
     display: grid;
     grid: auto auto / 80px 1fr;

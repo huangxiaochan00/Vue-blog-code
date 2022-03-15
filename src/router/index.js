@@ -6,8 +6,9 @@ import Detail from '@/views/Detail'
 import Login from '@/views/Login'
 import Personal from '@/views/Personal'
 import Register from '@/views/Register'
-
-
+import Index from '@/views/Index'
+import User from '@/views/User'
+import Create from '@/views/Create'
 Vue.use(Router)
 
 export default new Router({
@@ -35,6 +36,18 @@ export default new Router({
     {
       path: '/register',
       component: Register
+    },
+    {
+      path: '/user',
+      component: User
+    },
+    {
+      path: '/create',
+      component: Create
+    },
+    {
+      path: '/index',
+      component: Index
     }
   ]
 })

@@ -1,5 +1,5 @@
 <template>
-  <div id="edit">
+  <div id="create">
     <h1>编辑文章</h1>
     <h3>文章标题</h3>
     <el-input></el-input>
@@ -27,7 +27,6 @@ export default {
 <style scoped lang='less'>
 @import "../assets/base.less";
 
-#edit,
 #create {
   padding-bottom: 30px;
 
