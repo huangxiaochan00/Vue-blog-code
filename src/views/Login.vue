@@ -1,12 +1,15 @@
 <template>
   <div id="login">
     <h4>用户名</h4>
-    <el-input v-model="username" placeholder="用户名"></el-input>
-    <p class="error">当前用户名已注册</p>
+    <input v-model="username" placeholder="用户名" />
     <h4>密码</h4>
-    <el-input v-model="password" type="password" placeholder="密码"></el-input>
-    <p class="error">当前用户名已注册</p>
-    <el-button size="medium">立即登录</el-button>
+    <input
+      v-model="password"
+      type="password"
+      placeholder="密码"
+      @keyup.enter="onLogin"
+    />
+    <el-button size="medium" @click="onLogin">立即登录</el-button>
     <p class="notice">
       没有账号？<router-link to="/register">注册新用户</router-link>
     </p>
@@ -14,11 +17,27 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 export default {
   data() {
     return {
-      msg: "Welcome to Your Vue.js App",
+      username: "",
+      password: "",
     };
+  },
+
+  methods: {
+    ...mapActions(["login"]),
+
+    onLogin() {
+      console.log(this.username, this.password);
+      this.login({ username: this.username, password: this.password }).then(
+        () => {
+          this.$router.push({ path: "/" });
+        }
+      );
+    },
   },
 };
 </script>
@@ -27,7 +46,6 @@ export default {
 @import "../assets/base.less";
 
 #login {
-  // border: 1px red solid;
   display: grid;
   justify-content: center;
   padding-top: 30px;
@@ -42,6 +60,7 @@ export default {
 
   input {
     width: 400px;
+    height: 30px;
   }
 
   .error {
@@ -50,7 +69,7 @@ export default {
   }
 
   button {
-    margin-top: 10px;
+    margin-top: 30px;
     justify-self: start;
   }
 
