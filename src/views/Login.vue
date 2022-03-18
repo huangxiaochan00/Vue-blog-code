@@ -1,15 +1,7 @@
 <template>
   <div id="login">
-    <h4>用户名</h4>
-    <input v-model="username" placeholder="用户名" />
-    <h4>密码</h4>
-    <input
-      v-model="password"
-      type="password"
-      placeholder="密码"
-      @keyup.enter="onLogin"
-    />
-    <el-button size="medium" @click="onLogin">立即登录</el-button>
+    <Input @enter="onLogin">立即登录</Input>
+    <!-- <el-button size="medium" @click="onLogin">立即登录</el-button> -->
     <p class="notice">
       没有账号？<router-link to="/register">注册新用户</router-link>
     </p>
@@ -18,8 +10,11 @@
 
 <script>
 import { mapActions } from "vuex";
-
+import Input from "@/components/Input";
 export default {
+  components: {
+    Input,
+  },
   data() {
     return {
       username: "",
@@ -30,13 +25,11 @@ export default {
   methods: {
     ...mapActions(["login"]),
 
-    onLogin() {
-      console.log(this.username, this.password);
-      this.login({ username: this.username, password: this.password }).then(
-        () => {
-          this.$router.push({ path: "/" });
-        }
-      );
+    onLogin(a) {
+      console.log(a[0], a[1]);
+      this.login({ username: a[0], password: a[1] }).then(() => {
+        this.$router.push({ path: "/" });
+      });
     },
   },
 };
@@ -46,33 +39,6 @@ export default {
 @import "../assets/base.less";
 
 #login {
-  display: grid;
-  justify-content: center;
-  padding-top: 30px;
-
-  h4 {
-    margin: 10px 0 5px;
-  }
-
-  p {
-    margin: 5px 0;
-  }
-
-  input {
-    width: 400px;
-    height: 30px;
-  }
-
-  .error {
-    font-size: 12px;
-    color: #f00;
-  }
-
-  button {
-    margin-top: 30px;
-    justify-self: start;
-  }
-
   .notice {
     font-size: 12px;
     color: @textLighterColor;

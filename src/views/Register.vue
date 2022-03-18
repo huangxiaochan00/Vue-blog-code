@@ -1,15 +1,6 @@
 <template>
   <div id="register">
-    <h4>用户名</h4>
-    <input v-model="username" placeholder="用户名" />
-    <h4>密码</h4>
-    <input
-      v-model="password"
-      type="password"
-      placeholder="密码"
-      @keyup.enter="onRegister"
-    />
-    <el-button size="medium" @click="onRegister">立即注册</el-button>
+    <Input @enter="onRegister">立即注册</Input>
     <p class="notice">
       已有账号？<router-link to="/login">立即登录</router-link>
     </p>
@@ -18,8 +9,11 @@
 
 <script>
 import { mapActions } from "vuex";
-
+import Input from "@/components/Input";
 export default {
+  components: {
+    Input,
+  },
   data() {
     return {
       username: "",
@@ -30,12 +24,11 @@ export default {
   methods: {
     ...mapActions(["register"]),
 
-    onRegister() {
-      this.register({ username: this.username, password: this.password }).then(
-        () => {
-          this.$router.push({ path: "/" });
-        }
-      );
+    onRegister(a) {
+      console.log(a[0], a[1]);
+      this.register({ username: a[0], password: a[1] }).then(() => {
+        this.$router.push({ path: "/" });
+      });
     },
   },
 };
@@ -47,25 +40,6 @@ export default {
   display: grid;
   justify-content: center;
   padding-top: 30px;
-
-  h4 {
-    margin: 10px 0 5px;
-  }
-
-  p {
-    margin: 5px 0;
-  }
-
-  input {
-    width: 400px;
-    height: 30px;
-  }
-
-  .error {
-    font-size: 12px;
-    color: #f00;
-  }
-
   button {
     margin-top: 30px;
     justify-self: start;
