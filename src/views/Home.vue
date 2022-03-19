@@ -1,32 +1,32 @@
 <template>
   <div id="index">
     <section class="blog-posts">
-      <div class="item">
+      <router-link
+        :to="`/detail/${blog.id}`"
+        class="item"
+        v-for="(blog, index) in blogs"
+        :key="index"
+      >
         <figure class="avatar">
-          <img src="http://cn.gravatar.com/avatar/1?s=128&d=identicon" alt="" />
-          <figcaption>若愚</figcaption>
+          <img :src="blog.user.avatar" :alt="blog.user.username" />
+          <figcaption>{{ blog.user.username }}</figcaption>
         </figure>
-        <h3>前端异步大揭秘 <span>3天前</span></h3>
+        <h3>
+          {{ blog.title }} <span>{{ blog.createdAt }}</span>
+        </h3>
         <p>
-          本文以一个简单的文件读写为例，讲解了异步的不同写法，包括 普通的
-          callback、ES2016中的Promise和Generator、 Node 用于解决回调的co
-          模块、ES2017中的async/await。适合初步接触 Node.js以及少量
-          ES6语法的同学阅读...
+          {{ blog.description }}
         </p>
-      </div>
-      <div class="item">
-        <figure class="avatar">
-          <img src="http://cn.gravatar.com/avatar/1?s=128&d=identicon" alt="" />
-          <figcaption>若愚</figcaption>
-        </figure>
-        <h3>前端异步大揭秘 <span>3天前</span></h3>
-        <p>
-          本文以一个简单的文件读写为例，讲解了异步的不同写法，包括 普通的
-          callback、ES2016中的Promise和Generator、 Node 用于解决回调的co
-          模块、ES2017中的async/await。适合初步接触 Node.js以及少量
-          ES6语法的同学阅读...
-        </p>
-      </div>
+      </router-link>
+    </section>
+    <section class="pagination">
+      <el-pagination
+        background
+        layout="prev, pager, next"
+        :total="this.total"
+        @current-change="onChange"
+      >
+      </el-pagination>
     </section>
   </div>
 </template>
@@ -35,18 +35,44 @@ import blog from "@/api/blog";
 export default {
   data() {
     return {
-      msg: "Welcome to Your Vue.js App",
+      blogs: [],
+      total: 0,
+      page: 1,
     };
   },
-  // created(){
-  //   getIndexBlogs
-  // }
+  created() {
+    this.page = parseInt(this.$route.query.page) || 1;
+    blog.getIndexBlogs({ page: this.page }).then((res) => {
+      console.log(res);
+      this.blogs = res.data;
+      this.total = res.total;
+      this.page = res.page;
+    });
+  },
+  methods: {
+    onChange(newPage) {
+      blog.getIndexBlogs({ page: newPage }).then((res) => {
+        console.log(res);
+        this.blogs = res.data;
+        this.total = res.total;
+        this.page = res.page;
+        this.$router.push({ path: "/", query: { page: newPage } });
+      });
+    },
+  },
 };
 </script>
 
 <style scoped lang='less'>
 @import "../assets/base.less";
 #index {
+  .pagination {
+    display: grid;
+    justify-items: center;
+  }
+  a {
+    color: #000;
+  }
   .item {
     display: grid;
     grid: auto auto / 80px 1fr;
