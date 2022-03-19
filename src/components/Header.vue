@@ -45,14 +45,8 @@ export default {
   computed: {
     ...mapGetters(["isLogin", "user"]),
   },
-  // checkLogin() {
-  //   // console.log("dddd");
-  //   // this.$store.auth.dispatch("checkLogin");
-  // },
-
   created() {
     this.checkLogin();
-    // this.$store.dispatch("checkLogin");
   },
 
   methods: {

@@ -25,19 +25,23 @@
         </div>
       </div>
     </router-link>
+    <Pagination @updatePage="updatePage" :total="this.total" />
   </div>
 </template>
 <script>
 import blog from "@/api/blog";
 import { mapGetters } from "vuex";
+import Pagination from "@/components/Pagination";
 export default {
   data() {
     return {
       blogs: [],
       page: 1,
       total: 0,
-      // user: {},
     };
+  },
+  components: {
+    Pagination,
   },
   computed: {
     ...mapGetters(["user"]),
@@ -55,6 +59,12 @@ export default {
     splitDate(dateStr) {
       let date = dateStr.split("T")[0].split("-");
       return { year: date[0], month: date[1], day: date[2] };
+    },
+    updatePage({ blogs, total, page }) {
+      console.log(blogs);
+      this.blogs = blogs;
+      this.total = total;
+      this.page = page;
     },
   },
 };

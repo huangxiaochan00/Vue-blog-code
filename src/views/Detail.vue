@@ -22,7 +22,6 @@
 <script>
 import marked from "marked";
 import blog from "@/api/blog";
-// import beautifyDate from "@/api/date";
 export default {
   data() {
     return {
@@ -42,7 +41,6 @@ export default {
       this.createdAt = res.data.createdAt;
       this.user = res.data.user;
     });
-    // console.log(beautifyDate("2022-3-19"));
   },
 
   computed: {
@@ -50,11 +48,6 @@ export default {
       return marked(this.rawContent);
     },
   },
-  // methods: {
-  //   simplyDate(date) {
-  //     return beautifyDate(date);
-  //   },
-  // },
 };
 </script>
 

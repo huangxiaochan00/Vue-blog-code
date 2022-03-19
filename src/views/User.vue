@@ -21,15 +21,16 @@
         </p>
       </div>
     </router-link>
+    <Pagination @updatePage="updatePage" :total="this.total" />
   </div>
 </template>
 
 <script>
 import blog from "@/api/blog";
 import beautifyDate from "@/api/date";
-import Register from "./Register.vue";
+import Pagination from "@/components/Pagination.vue";
 export default {
-  components: { Register },
+  components: { Pagination },
   data() {
     return {
       blogs: [],
@@ -56,6 +57,12 @@ export default {
     splitDate(dateStr) {
       let date = dateStr.split("T")[0].split("-");
       return { year: date[0], month: date[1], day: date[2] };
+    },
+    updatePage({ blogs, total, page }) {
+      console.log(blogs);
+      this.blogs = blogs;
+      this.total = total;
+      this.page = page;
     },
   },
 };

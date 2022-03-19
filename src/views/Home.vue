@@ -20,19 +20,12 @@
         </p>
       </router-link>
     </section>
-    <section class="pagination">
-      <el-pagination
-        background
-        layout="prev, pager, next"
-        :total="this.total"
-        @current-change="onChange"
-      >
-      </el-pagination>
-    </section>
+    <Pagination @updatePage="updatePage" :total="this.total" />
   </div>
 </template>
 <script>
 import blog from "@/api/blog";
+import Pagination from "@/components/Pagination";
 export default {
   data() {
     return {
@@ -40,6 +33,9 @@ export default {
       total: 0,
       page: 1,
     };
+  },
+  components: {
+    Pagination,
   },
   created() {
     this.page = parseInt(this.$route.query.page) || 1;
@@ -50,19 +46,16 @@ export default {
     });
   },
   methods: {
-    onChange(newPage) {
-      blog.getIndexBlogs({ page: newPage }).then((res) => {
-        this.blogs = res.data;
-        this.total = res.total;
-        this.page = res.page;
-        this.$router.push({ path: "/", query: { page: newPage } });
-      });
+    updatePage({ blogs, total, page }) {
+      console.log(blogs);
+      this.blogs = blogs;
+      this.total = total;
+      this.page = page;
     },
   },
 };
 </script>
-
-<style scoped lang='less'>
+<style lang='less' scope>
 @import "../assets/base.less";
 #index {
   .pagination {
