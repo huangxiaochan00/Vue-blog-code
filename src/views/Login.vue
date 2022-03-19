@@ -28,7 +28,7 @@ export default {
     onLogin(a) {
       console.log(a[0], a[1]);
       this.login({ username: a[0], password: a[1] }).then(() => {
-        this.$router.push({ path: "/" });
+        this.$router.push({ path: this.$route.query.redirect || "/" });
       });
     },
   },

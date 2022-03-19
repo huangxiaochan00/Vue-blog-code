@@ -12,7 +12,9 @@
     </template>
     <template v-if="isLogin">
       <h1>Let's share</h1>
-      <i class="edit el-icon-edit"></i>
+      <router-link to="/create">
+        <i class="edit el-icon-edit"></i>
+      </router-link>
       <div class="user">
         <img
           class="avatar"
@@ -90,6 +92,7 @@ header.no-login {
 
   button {
     margin: 20px 5px 0;
+    background: #eaeaea;
   }
 }
 
