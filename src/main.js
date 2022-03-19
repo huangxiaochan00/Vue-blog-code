@@ -6,8 +6,10 @@ import router from './router'
 import ElementUI from 'element-ui';
 import store from './store';
 import 'element-ui/lib/theme-chalk/index.css';
+import Util from '@/api/date'
 Vue.config.productionTip = false
 Vue.use(ElementUI);
+Vue.use(Util)
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

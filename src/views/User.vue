@@ -50,7 +50,6 @@ export default {
       if (res.data.length > 0) {
         this.user = res.data[0].user;
       }
-      beautifyDate(this.blogs[0].createdAt);
     });
   },
   methods: {
