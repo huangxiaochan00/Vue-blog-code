@@ -31,12 +31,16 @@
   </div>
 </template>
 <script>
+import blog from "@/api/blog";
 export default {
   data() {
     return {
       msg: "Welcome to Your Vue.js App",
     };
   },
+  // created(){
+  //   getIndexBlogs
+  // }
 };
 </script>
 
