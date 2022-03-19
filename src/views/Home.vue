@@ -47,7 +47,6 @@ export default {
   },
   methods: {
     updatePage({ blogs, total, page }) {
-      console.log(blogs);
       this.blogs = blogs;
       this.total = total;
       this.page = page;

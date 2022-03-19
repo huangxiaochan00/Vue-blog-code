@@ -59,7 +59,6 @@ export default {
       return { year: date[0], month: date[1], day: date[2] };
     },
     updatePage({ blogs, total, page }) {
-      console.log(blogs);
       this.blogs = blogs;
       this.total = total;
       this.page = page;
