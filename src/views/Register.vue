@@ -25,7 +25,6 @@ export default {
     ...mapActions(["register"]),
 
     onRegister(a) {
-      console.log(a[0], a[1]);
       this.register({ username: a[0], password: a[1] }).then(() => {
         this.$router.push({ path: "/" });
       });

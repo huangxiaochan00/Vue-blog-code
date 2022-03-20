@@ -44,11 +44,9 @@ export default {
   },
   created() {
     this.blogId = this.$route.params.blogId | 0;
-    console.log(this.blogId);
     if (this.blogId !== 0) {
       blog.getDetail({ blogId: this.blogId }).then((res) => {
-        console.log(res);
-        this.title = res.data.title;
+       this.title = res.data.title;
         this.content = res.data.content;
         this.description = res.data.description;
         this.atIndex = res.data.atIndex;

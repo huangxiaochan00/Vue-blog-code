@@ -23,7 +23,6 @@ export default function request(url, type = 'GET', data = {}) {
         }
 
         axios(option).then(res => {
-            console.log(res.data)
             if (res.data.status === 'ok') {
                 if (res.data.token) {
                     localStorage.token = res.data.token
@@ -41,7 +40,3 @@ export default function request(url, type = 'GET', data = {}) {
 }
 
 
-// request('/auth/login', 'POST', {username: 'hunger', password: '123456'})
-//   .then(data=>{
-//     console.log(data)
-//   })

@@ -57,12 +57,8 @@ export default {
 <style lang='less' scope>
 @import "../assets/base.less";
 #index {
-  .pagination {
-    display: grid;
-    justify-items: center;
-  }
   a {
-    color: #000;
+    color: black;
   }
   .item {
     display: grid;

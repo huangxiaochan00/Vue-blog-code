@@ -49,7 +49,6 @@ export default {
   created() {
     this.page = this.$route.query.page || 1;
     blog.getBlogsByUserId(this.user.id, { page: this.page }).then((res) => {
-      console.log(res);
       this.page = res.page;
       this.total = res.total;
       this.blogs = res.data;

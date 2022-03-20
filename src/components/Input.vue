@@ -24,7 +24,6 @@ export default {
 
   methods: {
     onEnter() {
-      console.log("enter");
       this.$emit("enter", [this.username, this.password]);
     },
   },
