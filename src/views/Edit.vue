@@ -36,21 +36,3 @@ export default {
 };
 </script>
 
-<style scoped lang='less'>
-@import "../assets/base.less";
-
-#edit,
-#create {
-  padding-bottom: 30px;
-
-  h1 {
-    text-align: center;
-  }
-
-  .msg {
-    text-align: right;
-    font-size: 12px;
-    color: @textLighterColor;
-  }
-}
-</style>

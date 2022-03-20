@@ -21,7 +21,7 @@
         </p>
         <div class="actions">
           <router-link :to="`/edit/${blog.id}`">编辑</router-link>
-          <a href="#">删除</a>
+          <a @click.prevent="onDelete(blog.id)">删除</a>
         </div>
       </div>
     </router-link>
@@ -64,6 +64,16 @@ export default {
       this.blogs = blogs;
       this.total = total;
       this.page = page;
+    },
+    async onDelete(blogId) {
+      await this.$confirm("此操作将永久删除该文件, 是否继续?", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning",
+      });
+      await blog.deleteBlog({ blogId });
+      this.$message.success("删除成功");
+      this.blogs = this.blogs.filter((blog) => blog.id != blogId);
     },
   },
 };
